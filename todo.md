@@ -1,0 +1,11 @@
+**Path**
+- Program çalıştı, nmap ve searchsploit'in yüklü olup olmadığını sorguladı
+    - Yüklüyse, devam
+    - Yüklü değilse, kullanıcı yerine yükleyebilir ya da hata verip programdan çıkabilir (libxml2-utils de yüklenmeli)
+- Nmap üzerinden sorgu çekildi, xml'e yazıldı
+- Searchsploit ile nmap çıktısı okunacak:
+    - Manuel olarak okunabilir
+    - `searchsploit --nmap [file.xml]` şeklinde de okunabilir
+- **Buradan sonra programın davranışının nasıl olacağı belirlenmeli**:
+    - İlk çalıştırmada program kendi veritabanını oluşturur ve olası zafiyetleri kullanıcıya belirtir. Sonraki çalıştırmalarda (periyodik şekilde de olabilir) kayıtlı database ile yeniden çekilen searchsploit sorgusu karşılaştırılır eğer yeni zafiyetler eklenmişse kullanıcı uyarılır, ve port kapatılır
+    - Manuel olarak nmap okunup programın versiyonu da elde edilince versiyon ile searchsploit aranır (`searchsploit [program] [version]`), gelen çıktıda istenen keywordler varsa kullanıcı uyarılır ve port `iptables`'dan kapatılır, program sona erer.
